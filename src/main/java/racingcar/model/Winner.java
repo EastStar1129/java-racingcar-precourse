@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Winner {
 	public static final String WINNER_MSG = "최종 우승자: ";
-	Cars cars;
+	private Cars cars;
 	
 	public Winner(Cars cars2) {
 		cars = new Cars(getWinners(cars2));
