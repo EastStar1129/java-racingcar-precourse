@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 import racingcar.exception.CustomIllegalArgumentException;
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.RacingcarStack;
 
 public class Racingcar {
 	public static final String INPUT_NAMES_MSG = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
@@ -14,6 +15,7 @@ public class Racingcar {
 	public static final String NAME_REGEX = ",";
 	public static final int INIT_POSITION = 0;
 
+	private RacingcarStack racingCarStack;
 	private Cars cars;
 	
 	public Racingcar() {
@@ -27,6 +29,7 @@ public class Racingcar {
 		System.out.println(INPUT_TRY_NO_MSG);
 		while(!play(Console.readLine())) {
 		}
+		System.out.print(racingCarStack.toString());
 	}
 	
 	public boolean play(String round) {
@@ -42,8 +45,10 @@ public class Racingcar {
 	}
 	
 	private void move(int roundNumber) {
+		racingCarStack = new RacingcarStack();
 		for(int i=0;i<roundNumber;i++) {
 			cars.move();
+			racingCarStack.add(cars);
 		}
 	}
 	
