@@ -3,16 +3,55 @@ package racingcar;
 import java.util.ArrayList;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Console;
 import racingcar.exception.CustomIllegalArgumentException;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 
 public class Racingcar {
 	public static final String INPUT_NAMES_MSG = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
+	public static final String INPUT_TRY_NO_MSG = "시도할 회수는 몇회인가요?";
 	public static final String NAME_REGEX = ",";
 	public static final int INIT_POSITION = 0;
-	
+
 	private Cars cars;
+	
+	public Racingcar() {
+		cars = new Cars(new ArrayList<Car>());
+	}
+	
+	public void gameStart() {
+		System.out.println(INPUT_NAMES_MSG);
+		while(!initCars(Console.readLine())) {
+		}
+		System.out.println(INPUT_TRY_NO_MSG);
+		while(!play(Console.readLine())) {
+		}
+	}
+	
+	public boolean play(String round) {
+		try {
+			int roundNumber = GameUtils.strToint(round);
+			validateRoundNumber(roundNumber);
+			move(roundNumber);
+			return true;
+		}catch (CustomIllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	private void move(int roundNumber) {
+		for(int i=0;i<roundNumber;i++) {
+			cars.move();
+		}
+	}
+	
+	private void validateRoundNumber(int roundNumber) {
+		if(roundNumber <= 0) {
+			throw new CustomIllegalArgumentException("1에서 2,147,483,647범위의 숫자만 입력이 가능합니다.");
+		}
+	}
 	
 	public boolean initCars(String names) {
 		try {

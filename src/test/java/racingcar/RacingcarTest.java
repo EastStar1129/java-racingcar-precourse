@@ -21,4 +21,18 @@ public class RacingcarTest {
 	public void 자동차_리스트_입력받기_예외(String names) {
 		assertFalse(new Racingcar().initCars(names));
 	}
+
+    @ParameterizedTest
+    @ValueSource(strings = {"aa", "-1", "0", "*0"})
+	@DisplayName("게임 반복횟수를 입력을 실패하는 테스트")
+	public void 게임_반복횟수_입력받기_예외(String round) {
+		assertFalse(new Racingcar().play(round));
+	}
+    
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "3"})
+	@DisplayName("게임 반복횟수를 입력을 실패하는 테스트")
+	public void 게임_반복횟수_입력받기(String round) {
+		assertTrue(new Racingcar().initCars(round));
+	}
 }

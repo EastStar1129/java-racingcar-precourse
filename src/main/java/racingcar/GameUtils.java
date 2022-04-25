@@ -9,6 +9,14 @@ public class GameUtils {
 	public static final int MID_NO = 4;
 	public static final int MAX_NO = 9;
 	
+	public static int strToint(String value) {
+		try {
+			return Integer.parseInt(value);
+		} catch (NumberFormatException e) {
+			throw new CustomIllegalArgumentException("-2,147,483,648에서 2,147,483,647범위의 숫자만 가능합니다.");
+		}
+	}
+	
 	public static CarStatus getCarStatus(int pickNumber) {
 		validatePickNumber(pickNumber);
 		if(pickNumber < MID_NO) {
