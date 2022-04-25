@@ -21,7 +21,6 @@ class ApplicationTest extends NsTest {
     @DisplayName("자바 버전 확인, 8버전만 허용")
     @EnabledOnJre(value={ JRE.JAVA_8 })
     void 자바_버전_체크() {
-        
     }
     
     @Test
