@@ -1,6 +1,6 @@
 package racingcar.model;
 
-public class Car{
+public class Car implements Comparable<Car>{
 	private Name name;
 	private Position position; 
 	
@@ -19,5 +19,17 @@ public class Car{
 
 	public int getPosition() {
 		return position.getPosition();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return getPosition()==((Car)obj).getPosition();
+	}
+	
+	@Override
+	public int compareTo(Car car) {
+		// TODO Auto-generated method stub
+		return getPosition()-car.getPosition();
 	}
 }
