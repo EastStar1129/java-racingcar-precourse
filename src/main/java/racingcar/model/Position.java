@@ -19,4 +19,10 @@ public class Position {
 			throw new CustomIllegalArgumentException("차의 위치값은 0이상의 숫자만 입력할 수 있습니다.");
 		}
 	}
+	
+	public void move(CarStatus carStatus) {
+		if(carStatus.isGo()) {
+			position++;	
+		}
+	}
 }

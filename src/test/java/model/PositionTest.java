@@ -9,11 +9,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.exception.CustomIllegalArgumentException;
+import racingcar.model.CarStatus;
 import racingcar.model.Position;
 
 public class PositionTest {
-
-
+	
     @ParameterizedTest
     @ValueSource(ints = {-1})
 	@DisplayName("음수값을 입력한 위치값 테스트")
@@ -26,4 +26,15 @@ public class PositionTest {
 	public void 위치값_테스트() {
     	assertEquals(new Position(0).getPosition(), 0);
 	}
+    
+    @Test
+    @DisplayName("위치이동 테스트")
+    public void 위치값_이동_테스트() {
+    	Position position = new Position(0);
+    	position.move(CarStatus.STOP);
+    	assertEquals(position.getPosition(), 0);
+
+    	position.move(CarStatus.GO);
+    	assertEquals(position.getPosition(), 1);
+    }
 }
